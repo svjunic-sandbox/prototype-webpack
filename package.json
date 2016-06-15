@@ -1,0 +1,18 @@
+{
+  "name": "webpack-sample",
+  "version": "0.0.1",
+  "description": "webpack test",
+  "main": "index.js",
+  "scripts": {
+    "develop": "npm ru webpack -- --devtool inline-source-map --watch",
+    "minify": "NODE_ENV=production npm ru webpack -- --optimize-minimize",
+    "webpack": "webpack --colors --display-error-details --progress"
+  },
+  "author": "sv.junic",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "coffee-script": "^1.10.0",
+    "webpack": "^1.13.0"
+  }
+}
