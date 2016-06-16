@@ -21,6 +21,17 @@ module.exports =
     'jquery': 'jQuery'
     'velocity': 'velocity'
 
+  # nodeのpolyfillsを含めない
+  # http://webpack.github.io/docs/configuration.html#node
+  node:
+    console      : false
+    global       : false
+    process      : false
+    Buffer       : false
+    __filename   : false
+    __dirname    : false
+    setImmediate : false
+
   #plugins: [
   #  new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
   #]
