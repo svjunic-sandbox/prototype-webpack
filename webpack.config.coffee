@@ -1,36 +1,76 @@
-path    = require('path')
-webpack = require('webpack')
+path         = require('path')
+webpack      = require('webpack')
+WebpackStrip = require('strip-loader')
 
-DIST_DIR = './dist/'
+NODE_ENV = process.env.NODE_ENV
 
 module.exports =
   entry:
-    app    : './resource/main.js'
-    vendor : [
-        'jquery'
-        'velocity'
-      ]
+    'vendor' : [
+      'underscore',
+      'velocity-animate'
+      'jquery'
+    ]
+    'index' : path.join( __dirname, 'resources/main.js' )
 
   output:
-    path     : DIST_DIR
-    filename : 'app.js'
-
-  # 元々読みこんでいるグローバル変数を読み込む
-  externals:
-    '$': 'jQuery'
-    'jquery': 'jQuery'
-    'velocity': 'velocity'
-
-  #plugins: [
-  #  new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
-  #]
+    path          : path.join(__dirname, 'dist' )
+    filename      : '[name].bundle.js'
+    libraryTarget : 'umd'
 
 
-# TODO: あとでいれたい
-#
-# module-loader
-#   https://webpack.github.io/docs/configuration.html#module-loaders
-#   http://webpack.github.io/docs/list-of-loaders.html
-#
-# require適当のパス書かなくていいように先に設定するやつ
-#   https://webpack.github.io/docs/configuration.html#resolve-alias
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: if NODE_ENV=='production' then WebpackStrip.loader( 'debug', 'debugger', 'console.log', 'console.info', 'console.warn', 'console.error', 'console.assert', 'window.console.log' )
+      }
+      { test: require.resolve("jquery"), loader: 'expose-loader?$!expose-loader?jQuery' },
+    ]
+  }
+
+
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin
+    new webpack.IgnorePlugin(/vertx/)
+    new webpack.optimize.OccurrenceOrderPlugin
+    new webpack.optimize.AggressiveMergingPlugin
+    new webpack.optimize.CommonsChunkPlugin({
+      names    : [
+        'vendor'
+      ]
+    })
+    new webpack.ProvidePlugin({
+      jQuery          : 'jquery',
+      $               : 'jquery',
+      'window.jQuery' : 'jquery'
+      Velocity        : 'velocity-animate'
+    })
+  ].concat(
+    if process.argv.some (arg) ->
+      /^(?:-p|--optimize-minimize)$/.test(arg)
+    then [
+      # compile時にuglifyでminimizeする。
+      new webpack.optimize.UglifyJsPlugin(
+        compress:
+          pure_funcs: [
+            'log'
+          ]
+        output:
+          comments: require('uglify-save-license') # /*!から始まるコメントを残す
+      )
+    ]
+    else [
+      new webpack.DefinePlugin(
+        log: ->
+          if console?
+            # for IE8 and IE9
+            if typeof console.log is 'object'
+              Function::apply.call(console.log, console, arguments)
+            # for other browsers
+            else
+              console.log.apply(console, arguments)
+          return
+      )
+    ]
+  )
