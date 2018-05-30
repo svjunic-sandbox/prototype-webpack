@@ -10,5 +10,6 @@ Thumbs.db
 .idea
 .sass-cache
 node_modules
+package-lock.json
 
 nginx.pid
