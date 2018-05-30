@@ -6,13 +6,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
 .project
 .idea
 .sass-cache
 node_modules
 
-.vagrant
-.vagrant/*
-
-_sample
+nginx.pid
