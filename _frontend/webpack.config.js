@@ -34,13 +34,31 @@ module.exports = function() {
           uglifyOptions: {
             compress: {
               warnings: false,
-              pure_funcs: ['console.debug', 'console.log', 'console.info', 'console.warn', 'console.groupCollapsed', 'console.groupEnd', 'console.error']
+              pure_funcs: [
+                'console.debug',
+                'console.log',
+                'console.info',
+                'console.warn',
+                'console.groupCollapsed',
+                'console.groupEnd',
+                'console.error'
+              ]
             }
           }
         })
       ]
     });
   }
+
+  const resolve = {
+    // aliasを指定するとグローバルに展開されない
+    alias: {
+      //'jquery': 'jquery/src/jquery',
+      'velocity-animate': 'velocity-animate/velocity.min.js'
+    },
+    // モジュール検索
+    modules: [path.resolve(__dirname, 'resources'), 'node_modules']
+  };
 
   const baseConfig = {
     target: 'web',
@@ -75,6 +93,7 @@ module.exports = function() {
         mode: 'production',
         watchOptions: watchOptions,
         entry: entries,
+        resolve: resolve,
         output: output,
         optimization: optimization
       },
