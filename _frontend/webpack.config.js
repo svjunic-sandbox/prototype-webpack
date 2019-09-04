@@ -8,7 +8,7 @@ const DOCUMENT_ROOT = '../docs/';
 
 module.exports = function() {
   const entries = {
-    'js/main': path.join(__dirname, './resources/main.js')
+    'page/index': path.join(__dirname, './resources/page/index.js')
   };
 
   const watchOptions = {
@@ -17,13 +17,16 @@ module.exports = function() {
 
   const output = {
     path: path.join(__dirname, DOCUMENT_ROOT),
-    filename: '[name].js'
+    filename: '[name].js',
+    chunkFilename: '[name].mjs',
+    jsonpFunction: 'sandbox'
   };
 
   let optimization = {
     splitChunks: {
       name: 'js/vendor',
-      chunks: 'initial'
+      //chunks: 'initial'
+      chunks: 'all'
     }
   };
 
@@ -32,17 +35,9 @@ module.exports = function() {
       minimizer: [
         new UglifyJsPlugin({
           uglifyOptions: {
+            warnings: false,
             compress: {
-              warnings: false,
-              pure_funcs: [
-                'console.debug',
-                'console.log',
-                'console.info',
-                'console.warn',
-                'console.groupCollapsed',
-                'console.groupEnd',
-                'console.error'
-              ]
+              drop_console: true
             }
           }
         })
@@ -77,14 +72,7 @@ module.exports = function() {
       ]
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-      new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.ProvidePlugin({
-        jQuery: 'jquery',
-        $: 'jquery'
-      })
-    ]
+    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()]
   };
 
   return [

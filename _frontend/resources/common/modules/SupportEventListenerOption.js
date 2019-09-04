@@ -1,14 +1,21 @@
-var SupportEventListenerOption = false;
+/**
+ * @fileoverview イベントリスナーのオプションに対応しているかどうかの判定
+ */
+
+let supportEventListenerOption = false;
+
 try {
-  var opts = Object.defineProperty({}, 'passive', {
+  /* eslint-disable */
+  let opts = Object.defineProperty({}, "passive", {
     get: function() {
-      SupportEventListenerOption = true;
+      supportEventListenerOption = true;
     }
   });
+  /* eslint-enable */
   window.addEventListener('testPassive', null, opts);
   window.removeEventListener('testPassive', null, opts);
 } catch (e) {
   console.log('Passive Event Listener に対応しているかの判定に失敗しました。');
 }
 
-module.exports = SupportEventListenerOption;
+export default supportEventListenerOption;
