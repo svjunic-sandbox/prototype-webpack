@@ -9,7 +9,7 @@ import SupportEventListenerOption from "common/modules/SupportEventListenerOptio
 async function main() {
   // テスト
   let { default: Sample } = await import(
-    /* webpackChunkName: "js/index.sample" */ "./modules/sample.mjs"
+    /* webpackChunkName: "js/index.sample" */ "./_modules/sample.mjs"
   );
 }
 

@@ -5,10 +5,11 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const DOCUMENT_ROOT = '../docs/';
+const RESOURCES_ROOT = './resources/page/';
 
 module.exports = function() {
   const entries = {
-    'page/index': path.join(__dirname, './resources/page/index.js')
+    'js/index': path.join(__dirname, `${RESOURCES_ROOT}js/index.js`)
   };
 
   const watchOptions = {
@@ -18,7 +19,7 @@ module.exports = function() {
   const output = {
     path: path.join(__dirname, DOCUMENT_ROOT),
     filename: '[name].js',
-    chunkFilename: '[name].mjs',
+    chunkFilename: '[name].js',
     jsonpFunction: 'sandbox'
   };
 
