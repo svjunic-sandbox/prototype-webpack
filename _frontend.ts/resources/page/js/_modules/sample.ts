@@ -1,5 +1,5 @@
 export default class Sample {
-  public mogeta: string;
+  mogeta: string;
   constructor() {
     this.mogeta = 'sanma!';
     console.log(this.mogeta);
