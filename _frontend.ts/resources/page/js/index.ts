@@ -4,12 +4,12 @@
  */
 "use strict";
 
-import SupportEventListenerOption from "common/modules/SupportEventListenerOption.js";
+import SupportEventListenerOption from "common/modules/SupportEventListenerOption.ts";
 
 async function main() {
   // テスト
   let { default: Sample } = await import(
-    /* webpackChunkName: "js/index.sample" */ "./_modules/sample.mjs"
+    /* webpackChunkName: "js/index.sample" */ "./_modules/sample.ts"
   );
 }
 
