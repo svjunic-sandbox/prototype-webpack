@@ -17,3 +17,7 @@ async function main(): Promise {
 }
 
 main();
+
+[...document.querySelectorAll('div')].forEach(el => {
+  console.log(el);
+});
