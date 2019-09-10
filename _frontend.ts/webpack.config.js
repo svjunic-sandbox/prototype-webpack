@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 console.log(process.env.NODE_ENV);
 
 const path = require("path");
