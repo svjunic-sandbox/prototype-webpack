@@ -11,15 +11,15 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
     "@babel/preset-typescript": "^7.6.0",
-    "@babel/runtime": "^7.5.5",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
+    "@babel/runtime": "^7.6.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "babel-loader": "^8.0.6",
     "core-js": "^3.2.1",
     "css-loader": "^3.2.0",
@@ -30,6 +30,6 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "velocity-animate": "1.5.2",
     "webpack": "4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.8"
   }
 }

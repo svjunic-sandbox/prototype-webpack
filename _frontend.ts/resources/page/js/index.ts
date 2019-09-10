@@ -5,6 +5,7 @@
 'use strict';
 
 import SupportEventListenerOption from 'common/modules/SupportEventListenerOption.ts';
+import basetypes from './basetypes.ts';
 
 async function main(): Promise {
   // テスト
