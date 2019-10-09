@@ -69,6 +69,9 @@ module.exports = function() {
           use: [
             {
               loader: "babel-loader"
+            },
+            {
+              loader: "ts-loader"
             }
           ]
         }

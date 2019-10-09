@@ -20,6 +20,7 @@
     "sourceType": "module",
     "warnOnUnsupportedTypeScriptVersion": false //Vim用！
   },
+  "root": true,
   "rules": {
     "no-console": 0,
     "no-alert": 0,

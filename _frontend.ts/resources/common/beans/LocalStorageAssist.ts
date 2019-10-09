@@ -5,6 +5,8 @@
  */
 
 class LocalStorageAssist {
+  private localStorage: any;
+
   /*
    * @constructor
    */
@@ -17,7 +19,7 @@ class LocalStorageAssist {
    * @param {String} name localStorageのキー
    * @return {Object} value typeに応じた値を返す。Arrayは対応していない。データがない場合、あるいはexpiresの期限を超えている場合はnullを返す。
    */
-  getItem(name) {
+  getItem(name: string) {
     let result = null;
 
     const stringData = this.localStorage.getItem(name);
@@ -27,24 +29,28 @@ class LocalStorageAssist {
     const parsedData = JSON.parse(stringData);
 
     if (parsedData.expires !== 0) {
-      console.log(parsedData.expires, new Date().getTime(), parsedData.expires < new Date().getTime());
+      console.log(
+        parsedData.expires,
+        new Date().getTime(),
+        parsedData.expires < new Date().getTime()
+      );
       if (parsedData.expires < new Date().getTime()) {
-        console.log('time over');
+        console.log("time over");
         return result;
       }
     }
 
     switch (parsedData.type) {
-      case 'object':
+      case "object":
         result = JSON.parse(parsedData.value);
         break;
-      case 'string':
+      case "string":
         result = parsedData.value;
         break;
-      case 'number':
+      case "number":
         result = parseInt(parsedData.value, 10);
         break;
-      case 'boolean':
+      case "boolean":
         result = parsedData.value;
         break;
     }
@@ -59,10 +65,10 @@ class LocalStorageAssist {
    * @param {Object,String} value 保存するオブジェクト、Boolean、または文字列。Arrayは対応していない。
    * @param {Number} date 有効にする日数
    */
-  setItem(name, value, date = 0) {
+  setItem(name: string, value: string | boolean | string, date: number = 0) {
     let pubDate = new Date().getTime();
     let expires = 0;
-    if (typeof date === 'number' && date > 0) {
+    if (typeof date === "number" && date > 0) {
       expires = pubDate + date * 24 * 60 * 60 * 1000;
     }
     const valueObject = {
