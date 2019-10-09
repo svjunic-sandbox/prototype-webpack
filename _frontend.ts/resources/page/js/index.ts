@@ -4,8 +4,8 @@
  */
 "use strict";
 
-//import SupportEventListenerOption from "common/modules/SupportEventListenerOption.ts";
-import SupportEventListenerOption from "common/modules/SupportEventListenerOption";
+import SupportEventListenerOption from 'common/modules/SupportEventListenerOption';
+import basetypes from './basetypes';
 
 async function main(): Promise {
   // テスト
@@ -20,3 +20,7 @@ async function main(): Promise {
 }
 
 main();
+
+[...document.querySelectorAll('div')].forEach(el => {
+  console.log(el);
+});

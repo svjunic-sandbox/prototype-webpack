@@ -5,8 +5,7 @@
     "es6": true
   },
   "plugins": [
-    "@typescript-eslint",
-    "eslint-plugin-prettier"
+    "@typescript-eslint"
   ],
   "extends": [
     "eslint:recommended", 
@@ -18,7 +17,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
-    "warnOnUnsupportedTypeScriptVersion": false //Vim用！
+    "warnOnUnsupportedTypeScriptVersion": false, //Vim用！
+    "tsconfigRootDir": "."
   },
   "root": true,
   "rules": {
@@ -46,6 +46,12 @@
         "singleQuote": true,
         "bracketSpacing": true,
         "printWidth": 10000
+      }
+    ],
+    "@typescript-eslint/no-inferrable-types": [
+      "error", {
+        "ignoreProperties": true,
+        "ignoreParameters": true
       }
     ]
   }

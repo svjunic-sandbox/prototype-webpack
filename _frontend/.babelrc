@@ -6,7 +6,6 @@
         [
           "@babel/preset-env",
           {
-            "debug": true,
             "loose": true,
             "modules": false,
             "targets": {
@@ -34,7 +33,6 @@
         [
           "@babel/preset-env",
           {
-            "debug": true,
             "loose": true,
             "modules": false,
             "targets": {
