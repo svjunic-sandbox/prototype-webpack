@@ -73,7 +73,10 @@ module.exports = function() {
       ]
     },
 
-    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()]
+    plugins: [
+      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.optimize.AggressiveMergingPlugin()
+    ]
   };
 
   return [

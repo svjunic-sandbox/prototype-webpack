@@ -7,9 +7,10 @@
 import SupportEventListenerOption from "common/modules/SupportEventListenerOption.js";
 
 async function main() {
-  // テスト
+  window.mogeta = "hogehogehoge";
   let { default: Sample } = await import(
-    /* webpackChunkName: "js/index.sample" */ "./_modules/sample.mjs"
+    // mjs拡張子だと通らないわ・・・
+    /* webpackChunkName: "/js/index.sample" */ "./_modules/sample.js"
   );
 }
 
