@@ -49,10 +49,10 @@ module.exports = function() {
   }
 
   const resolve = {
-    //alias: {
-    //  //'jquery': 'jquery/src/jquery',
-    //  "velocity-animate": "velocity-animate/velocity.min.js"
-    //},
+    alias: {
+      '~': path.resolve(__dirname, '/resources')
+      //"velocity-animate": "velocity-animate/velocity.min.js"
+    },
     // モジュール検索
     modules: [path.resolve(__dirname, 'resources'), 'node_modules']
   };
