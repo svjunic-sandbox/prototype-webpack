@@ -1,10 +1,8 @@
-export interface IComponent {
-  $el: HTMLElement | null;
-}
+import { IComponent } from '~/interfaces/common/component';
 
 export interface ITestComponent extends IComponent {
   $el: HTMLElement | null;
-  state: string;
-  count: number;
+  state: String;
+  count: Number;
   echo(): void;
 }

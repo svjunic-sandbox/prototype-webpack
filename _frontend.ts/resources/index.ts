@@ -1,13 +1,14 @@
-import { ITestComponent } from './interfaces/test.d';
+import { ITestComponent } from '~/interfaces/test';
 
 class TestComponent {
-  public state = 'mogeta!';
-  public count = 1000;
   //public $el = document.querySelector('html');
   public $el = null;
+  public state: String = 'mogeta!';
+  public count: Number = 1000;
 
   // @constructs
-  constructor() {}
+  constructor() {
+  }
 
   echo() {
     console.log(this.state);

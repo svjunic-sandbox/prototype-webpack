@@ -1,17 +1,16 @@
-/* eslint-disable */
-
+// https://microsoft.github.io/TypeSearch/
 console.log(process.env.NODE_ENV);
 
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const DOCUMENT_ROOT = './dist/';
+const DOCUMENT_ROOT = '../docs/';
 const RESOURCES_ROOT = './resources/';
 
 module.exports = function() {
   const entries = {
-    index: path.join(__dirname, `${RESOURCES_ROOT}index.ts`)
+    'js/index': path.join(__dirname, `${RESOURCES_ROOT}index.ts`)
   };
 
   const watchOptions = {
@@ -49,8 +48,10 @@ module.exports = function() {
   }
 
   const resolve = {
+    extensions: ['.ts', '.d.ts', '.js'],
     alias: {
-      '~': path.resolve(__dirname, '/resources')
+      '~': path.resolve(__dirname, './resources')
+      //'@': path.resolve(__dirname, './resources')
       //"velocity-animate": "velocity-animate/velocity.min.js"
     },
     // モジュール検索
@@ -63,7 +64,7 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.ts$/,
+          test: [/\.ts$/, /\.js$/],
           exclude: /node_modules/,
           use: [
             {
