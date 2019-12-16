@@ -49,11 +49,12 @@ module.exports = function() {
   const resolve = {
     // aliasを指定するとグローバルに展開されない
     alias: {
-      //'jquery': 'jquery/src/jquery',
-      'velocity-animate': 'velocity-animate/velocity.min.js'
+      '~': path.resolve(__dirname, 'resources')
+      //'@': path.resolve(__dirname, './resources')
     },
     // モジュール検索
-    modules: [path.resolve(__dirname, 'resources'), 'node_modules']
+    //modules: [path.resolve(__dirname, 'resources'), 'node_modules']
+    modules: ['node_modules']
   };
 
   const baseConfig = {
@@ -73,10 +74,7 @@ module.exports = function() {
       ]
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-      new webpack.optimize.AggressiveMergingPlugin()
-    ]
+    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()]
   };
 
   return [
