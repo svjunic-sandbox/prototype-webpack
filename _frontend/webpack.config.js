@@ -2,6 +2,7 @@ console.log(process.env.NODE_ENV);
 
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const DOCUMENT_ROOT = '../docs/';
 const RESOURCES_ROOT = './resources/page/';
@@ -33,19 +34,31 @@ module.exports = function () {
       chunks: 'all',
     },
   };
+  if (isProduction) {
+    optimization = Object.assign(optimization, {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: { drop_console: true },
+          },
+        }),
+      ],
+    });
+  }
 
   const resolve = {
     // aliasを指定するとグローバルに展開されない
     alias: {
+      '~': path.resolve(__dirname, 'resources'),
       //'jquery': 'jquery/src/jquery',
-      'velocity-animate': 'velocity-animate/velocity.min.js',
+      //'velocity-animate': 'velocity-animate/velocity.min.js',
     },
     // モジュール検索
     modules: [path.resolve(__dirname, 'resources'), 'node_modules'],
   };
 
   const baseConfig = {
-    target: 'web',
+    target: ['web', 'es5'],
 
     module: {
       rules: [
